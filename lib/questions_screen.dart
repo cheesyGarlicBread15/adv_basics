@@ -1,7 +1,9 @@
 import 'package:adv_basics/buttons/answer_button.dart';
+import 'package:adv_basics/models/quiz_question.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
+import 'package:adv_basics/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
   const QuestionsScreen({super.key});
@@ -11,6 +13,10 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
+  // from another file
+  final QuizQuestion currentQuestion = questions[0];
+  final numbers = [1, 2, 3, 4];
+
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -18,45 +24,28 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
       child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          const Text(
-            'question here',
-            style: TextStyle(
-              color: Colors.white,
-              fontSize: 24,
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 50),
+            child: Text(
+              currentQuestion.question,
+              style: const TextStyle(
+                color: Colors.white,
+                fontSize: 15,
+              ),
             ),
           ),
           const SizedBox(
             height: 30,
           ),
-          AnswerButton(
-            answer: 'answer 1',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          AnswerButton(
-            answer: 'answer 2',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          AnswerButton(
-            answer: 'answer 3',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 6,
-          ),
-          AnswerButton(
-            answer: 'answer 4',
-            onTap: () {},
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          ElevatedButton(onPressed: () {}, child: const Text('Next'))
+          /**.map returns a list of AnswerButtons ([AnswerButton, AnswerButton, ...]), we need widgets not list,
+           * to return the list as the values inside which we need, add three dots '...' before the list
+           */
+          ...currentQuestion.answers.map((answer) {
+            return AnswerButton(
+              answer: answer,
+              onTap: () {},
+            );
+          }),
         ],
       ),
     );
