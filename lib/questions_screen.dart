@@ -44,7 +44,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             /**.map returns a list of AnswerButtons ([AnswerButton, AnswerButton, ...]), we need widgets not list,
              * to return the list as the values inside which we need, add three dots '...' before the list
              */
-            ...currentQuestion.answers.map((answer) {
+            ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answer: answer,
                 onTap: () {},
