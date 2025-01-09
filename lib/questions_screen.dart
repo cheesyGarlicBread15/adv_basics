@@ -21,32 +21,37 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
   Widget build(BuildContext context) {
     return SizedBox(
       width: double.infinity,
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50),
-            child: Text(
-              currentQuestion.question,
-              style: const TextStyle(
-                color: Colors.white,
-                fontSize: 15,
+      child: Container(
+        margin: const EdgeInsets.all(40),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 30),
+              child: Text(
+                currentQuestion.question,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 15,
+                ),
+                textAlign: TextAlign.center,
               ),
             ),
-          ),
-          const SizedBox(
-            height: 30,
-          ),
-          /**.map returns a list of AnswerButtons ([AnswerButton, AnswerButton, ...]), we need widgets not list,
-           * to return the list as the values inside which we need, add three dots '...' before the list
-           */
-          ...currentQuestion.answers.map((answer) {
-            return AnswerButton(
-              answer: answer,
-              onTap: () {},
-            );
-          }),
-        ],
+            const SizedBox(
+              height: 30,
+            ),
+            /**.map returns a list of AnswerButtons ([AnswerButton, AnswerButton, ...]), we need widgets not list,
+             * to return the list as the values inside which we need, add three dots '...' before the list
+             */
+            ...currentQuestion.answers.map((answer) {
+              return AnswerButton(
+                answer: answer,
+                onTap: () {},
+              );
+            }),
+          ],
+        ),
       ),
     );
   }
