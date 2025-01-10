@@ -20,12 +20,21 @@ const List<QuizQuestion> questions = [
     ],
   ),
   QuizQuestion(
-    question: 'What\'s the purpose of a StatefulWidget?',
+    question: 'What is the purpose of the pubspec.yaml file?',
     answers: [
-      'To build a widget that can rebuild itself when its state changes',
-      'To build a widget that never changes',
-      'To build a widget that can be used only once',
-      'To build a widget that can be used multiple times',
+      'To define the project dependencies',
+      'To configure the project build settings',
+      'To specify the project entry point',
+      'To manage the project version control',
+    ],
+  ),
+  QuizQuestion(
+    question: 'Which widget is used for layout in Flutter?',
+    answers: [
+      'Container',
+      'Column',
+      'Row',
+      'All of the above',
     ],
   ),
 ];

@@ -1,8 +1,6 @@
 import 'package:adv_basics/buttons/answer_button.dart';
 import 'package:adv_basics/models/quiz_question.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:flutter/widgets.dart';
 import 'package:adv_basics/data/questions.dart';
 
 class QuestionsScreen extends StatefulWidget {
@@ -13,12 +11,24 @@ class QuestionsScreen extends StatefulWidget {
 }
 
 class _QuestionsScreenState extends State<QuestionsScreen> {
-  // from another file
-  final QuizQuestion currentQuestion = questions[0];
-  final numbers = [1, 2, 3, 4];
+  var currentQuestionIndex = 0;
+
+  void answerQuestion() {
+    setState(() {
+      currentQuestionIndex += 1;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
+    // from another file
+    QuizQuestion currentQuestion = questions[currentQuestionIndex];
+
+    /**
+     * currentQuestionIndex shuold not be inside build method since every time build method is called (i.e. setstate)
+     * currentQuestionIndex will always be re initialized to 0
+     */
+    
     return SizedBox(
       width: double.infinity,
       child: Container(
@@ -47,7 +57,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
             ...currentQuestion.getShuffledAnswers().map((answer) {
               return AnswerButton(
                 answer: answer,
-                onTap: () {},
+                onTap: answerQuestion,
               );
             }),
           ],
