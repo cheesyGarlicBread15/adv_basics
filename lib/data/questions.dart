@@ -37,4 +37,14 @@ const List<QuizQuestion> questions = [
       'All of the above',
     ],
   ),
+  QuizQuestion(
+    question:
+        'What is the primary programming language used for Flutter development?',
+    answers: [
+      'Dart',
+      'Java',
+      'Kotlin',
+      'Swift',
+    ],
+  ),
 ];

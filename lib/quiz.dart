@@ -31,6 +31,13 @@ class _QuizState extends State<Quiz> {
     });
   }
 
+  void restartQuiz() {
+    setState(() {
+      selectedAnswers.clear();
+      switchScreen('start-screen');
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Widget screenWidget =
@@ -41,7 +48,7 @@ class _QuizState extends State<Quiz> {
       );
     } else if (_currentScreen == 'results-screen') {
       screenWidget = ResultsScreen(
-        onRestartQuiz: () => switchScreen('start-screen'),
+        onRestartQuiz: restartQuiz,
         selectedAnswers: selectedAnswers,
       );
     }
@@ -53,7 +60,10 @@ class _QuizState extends State<Quiz> {
               gradient: LinearGradient(
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
-                  colors: [Colors.black, Colors.green])),
+                  colors: [
+                Color.fromARGB(255, 78, 13, 151),
+                Color.fromARGB(255, 107, 15, 168)
+              ])),
           child: screenWidget,
         ),
       ),

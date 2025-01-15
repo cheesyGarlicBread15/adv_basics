@@ -1,6 +1,8 @@
 import 'package:adv_basics/answer_summary.dart';
 import 'package:adv_basics/data/questions.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class ResultsScreen extends StatelessWidget {
   final void Function() onRestartQuiz;
@@ -19,7 +21,6 @@ class ResultsScreen extends StatelessWidget {
         'user_answer': selectedAnswers[i]
       });
     }
-
     return summary;
   }
 
@@ -40,23 +41,35 @@ class ResultsScreen extends StatelessWidget {
           children: [
             Text(
               'You answered $totCorrectAnswers out of $totQuestions questions correctly!',
-              style: const TextStyle(color: Colors.white),
+              style: GoogleFonts.raleway(color: Colors.white),
             ),
             const SizedBox(
               height: 30,
             ),
-            ...getSummary().map((summary) {
-              return AnswerSummary(summary: summary);
-            }),
+            SizedBox(
+              height: 300,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    ...getSummary().map((summary) {
+                      return AnswerSummary(summary: summary);
+                    }),
+                  ],
+                ),
+              ),
+            ),
             const SizedBox(
               height: 30,
             ),
             OutlinedButton.icon(
-              onPressed: () {},
+              onPressed: onRestartQuiz,
               style: OutlinedButton.styleFrom(
                 foregroundColor: Colors.white,
               ),
-              label: const Text('Restart Quiz'),
+              label: Text(
+                'Restart Quiz',
+                style: GoogleFonts.raleway(color: Colors.white, fontWeight: FontWeight.bold),
+              ),
               icon: const Icon(Icons.restart_alt),
             ),
           ],

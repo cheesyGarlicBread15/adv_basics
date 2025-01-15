@@ -22,6 +22,9 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
     });
   }
 
+  // TODO: implement alternative button logic, onTap highlight button, if button is highlighted, then make the next button visible/clickable
+  // FIXME: answer buttons overlapping when answer text is long
+
   @override
   Widget build(BuildContext context) {
     // from another file
@@ -44,7 +47,7 @@ class _QuestionsScreenState extends State<QuestionsScreen> {
               currentQuestion.question,
               style: GoogleFonts.raleway(
                 color: Colors.white,
-                fontSize: 15,
+                fontSize: 20,
               ),
               textAlign: TextAlign.center,
             ),
